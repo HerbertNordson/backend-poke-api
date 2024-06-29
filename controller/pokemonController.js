@@ -4,7 +4,8 @@ const axios = require("axios");
 class PokemonController {
   async read(req, res) {
     const { name } = req.params;
-
+    res.set("Access-Control-Allow-Origin", "*");
+    
     try {
       const pokemon = await axios({
         method: "get",
@@ -16,7 +17,7 @@ class PokemonController {
         return res.status(200).json(pokemon.data);
       }
     } catch (error) {
-      return res.status(error.response.status).send({
+      return res.status(error.response.status).json({
         status: error.response.status,
         message: error.message,
       });
