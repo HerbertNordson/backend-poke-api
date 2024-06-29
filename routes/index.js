@@ -1,7 +1,9 @@
 const { Router } = require("express");
 
-const routes = Router();
+const PokemonController = require("../controller/pokemonController");
+const pokemonRoutes = new PokemonController();
 
-routes.use("/pokemon/");
+const routes = Router();
+routes.use("/pokemon/:name", pokemonRoutes.read);
 
 module.exports = routes;
